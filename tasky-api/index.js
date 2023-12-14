@@ -3,6 +3,7 @@ import express from 'express';
 import tasksRouter from './api/tasks';
 import './db';
 import usersRouter from './api/users';
+import cors from 'cors';
 dotenv.config();
 const errHandler = (err, req, res, next) => {
   /* if the error in development then send stack trace to display whole error,
@@ -15,6 +16,7 @@ const errHandler = (err, req, res, next) => {
 const app = express();
 
 const port = process.env.PORT;
+app.use(cors());
 app.use(express.json());
 app.use('/api/tasks', tasksRouter);
 //Users router
